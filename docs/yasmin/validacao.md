@@ -9,4 +9,5 @@
 - Layout inspecionado em desktop 1440x900 e mobile 390x844. Capturas nesta pasta.
 - Context7 e servidor Playwright MCP não disponíveis. Automação feita pelo navegador integrado, sem apresentar evidências antigas como atuais.
 - Referências Figma inacessíveis pela ferramenta web; comparação direta pendente.
-- Publicação no GitHub pendente; nenhum repositório remoto foi criado nesta etapa.
+- Código, README, AGENTS.md e capturas publicados em https://github.com/yaascarol/devlinks, branch main. Envio inicial confirmado pelo Git: d10eb17.
+

@@ -30,7 +30,7 @@ Lint e build aprovados. Verificação no navegador: avatar carregado, quatro des
 
 As evidências antigas do ZIP original foram excluídas desta entrega. Consulte [o registro atual](docs/yasmin/validacao.md).
 
-## Pendências da entrega acadêmica
+## Entrega e pendências
 
 - Repositório desta entrega: https://github.com/yaascarol/devlinks
 - Consultar Context7 e validar pelo servidor Playwright MCP: ambos indisponíveis nesta sessão. A validação atual foi por automação do navegador integrado.
@@ -45,4 +45,5 @@ As evidências antigas do ZIP original foram excluídas desta entrega. Consulte 
 ![Desktop](docs/yasmin/desktop-dark.png)
 
 ![Mobile](docs/yasmin/mobile-light.png)
+
 
