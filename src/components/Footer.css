@@ -1,0 +1,8 @@
+.footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.footer p { margin: 0; }

@@ -1,0 +1,37 @@
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 24px;
+  list-style: none;
+}
+
+.link-list li { min-width: 0; }
+
+.link-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 15px 24px;
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+  backdrop-filter: blur(4px);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a.link-button:hover { border-color: var(--text-color); }
+
+.link-button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 4px;
+}
