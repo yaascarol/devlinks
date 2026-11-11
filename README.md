@@ -33,7 +33,8 @@ As evidências antigas do ZIP original foram excluídas desta entrega. Consulte 
 ## Entrega e pendências
 
 - Repositório desta entrega: https://github.com/yaascarol/devlinks
-- Consultar Context7 e validar pelo servidor Playwright MCP: ambos indisponíveis nesta sessão. A validação atual foi por automação do navegador integrado.
+- Context7 MCP: consulta real concluída sobre useState e Props; veja [evidência e fontes](docs/yasmin/context7.md). Foi uma revisão posterior à implementação.
+- Pendente: validar pelo servidor Playwright MCP. A validação atual foi por automação do navegador integrado.
 - Comparar diretamente com o Figma: as referências não abriram na ferramenta disponível. Os estilos e assets do ZIP foram preservados.
 
 ## Referência e créditos
@@ -45,5 +46,6 @@ As evidências antigas do ZIP original foram excluídas desta entrega. Consulte 
 ![Desktop](docs/yasmin/desktop-dark.png)
 
 ![Mobile](docs/yasmin/mobile-light.png)
+
 
 
