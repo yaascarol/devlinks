@@ -37,6 +37,10 @@
 
 .theme-toggle__handle img { display: block; }
 
+.theme-toggle:hover .theme-toggle__handle {
+  box-shadow: 0 0 0 8px var(--highlight-color), 0 2px 4px var(--shadow-color);
+}
+
 .theme-toggle[aria-checked='true'] .theme-toggle__handle {
   transform: translateX(32px);
 }

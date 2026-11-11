@@ -38,3 +38,8 @@ Capturas desktop escura e mobile 320 clara também inspecionadas visualmente. Os
 ## Limite da comparação com o Figma
 
 A navegação real pelo MCP à referência node-id=0-1 retornou HTTP 403, com título “ERROR: The request could not be satisfied” e mensagem “Request blocked”. Não foi possível inspecionar os frames originais. A comparação direta com o Figma permanece pendente de acesso; não se afirma fidelidade visual validada.
+
+## Revisão posterior com Figma
+
+O bloqueio descrito acima foi resolvido com uma cópia da usuária. Comparação concluída e testes repetidos após ajustes de hover: veja [figma.md](figma.md) e [registro atualizado](figma-validacao/calls.json).
+

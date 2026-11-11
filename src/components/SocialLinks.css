@@ -17,7 +17,10 @@
 
 .social-links img { display: block; }
 
-.social-links a:hover { background: var(--surface-color); }
+.social-links a:hover {
+  background: var(--highlight-color);
+  box-shadow: 0 0 0 8px var(--highlight-color);
+}
 
 .social-links a:focus-visible {
   outline: 2px solid var(--text-color);

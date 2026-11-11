@@ -1,0 +1,28 @@
+- main "Links do perfil" [ref=e3]:
+  - generic [ref=e4]:
+    - img "Avatar de Yasmin no GitHub" [ref=e6]
+    - paragraph [ref=e7]: "@yaascarol"
+  - switch "Modo claro" [ref=e8] [cursor=pointer]
+  - navigation "Links de Yasmin" [ref=e11]:
+    - list [ref=e12]:
+      - listitem [ref=e13]:
+        - link "Meu GitHub" [ref=e14] [cursor=pointer]:
+          - /url: https://github.com/yaascarol
+      - listitem [ref=e15]:
+        - link "Meus repositórios" [ref=e16] [cursor=pointer]:
+          - /url: https://github.com/yaascarol?tab=repositories
+      - listitem [ref=e17]:
+        - link "Currency Exchange App" [ref=e18] [cursor=pointer]:
+          - /url: https://github.com/yaascarol/ProjetoCurrencyExchangeApp
+      - listitem [ref=e19]:
+        - link "Projetos que acompanho" [ref=e20] [cursor=pointer]:
+          - /url: https://github.com/yaascarol?tab=stars
+  - navigation "Redes sociais" [ref=e21]:
+    - list [ref=e22]:
+      - listitem [ref=e23]:
+        - link "GitHub de Yasmin (abre em nova aba)" [ref=e24] [cursor=pointer]:
+          - /url: https://github.com/yaascarol
+  - paragraph [ref=e26]:
+    - text: Feito com
+    - img "carinho" [ref=e27]: ♥
+    - text: por Yasmin

@@ -29,7 +29,11 @@
   overflow-wrap: anywhere;
 }
 
-a.link-button:hover { border-color: var(--text-color); }
+a.link-button:hover {
+  border-color: var(--text-color);
+  background: var(--surface-hover);
+  box-shadow: inset 0 0 0 0.5px var(--text-color);
+}
 
 .link-button:focus-visible {
   outline: 2px solid var(--text-color);

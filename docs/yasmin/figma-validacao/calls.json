@@ -1,0 +1,239 @@
+{
+  "server": "@playwright/mcp",
+  "version": "0.0.85",
+  "transport": "stdio",
+  "records": [
+    {
+      "name": "browser_navigate",
+      "arguments": {
+        "url": "http://127.0.0.1:5175/"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Ran Playwright code\n```js\nawait page.goto('http://127.0.0.1:5175/');\n```\n### Page\n- Page URL: http://127.0.0.1:5175/\n- Page Title: Yasmin | DevLinks\n### Snapshot\n- [Snapshot](docs\\yasmin\\figma-validacao\\page-2026-11-11T02-14-05-597Z.yml)\n### Events\n- New console entries: docs\\yasmin\\figma-validacao\\console-2026-11-11T02-14-04-423Z.log#L1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_snapshot",
+      "arguments": {},
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Page\n- Page URL: http://127.0.0.1:5175/\n- Page Title: Yasmin | DevLinks\n### Snapshot\n```yaml\n- main \"Links do perfil\" [ref=e3]:\n  - generic [ref=e4]:\n    - img \"Avatar de Yasmin no GitHub\" [ref=e6]\n    - paragraph [ref=e7]: \"@yaascarol\"\n  - switch \"Modo claro\" [ref=e8] [cursor=pointer]\n  - navigation \"Links de Yasmin\" [ref=e11]:\n    - list [ref=e12]:\n      - listitem [ref=e13]:\n        - link \"Meu GitHub\" [ref=e14] [cursor=pointer]:\n          - /url: https://github.com/yaascarol\n      - listitem [ref=e15]:\n        - link \"Meus repositórios\" [ref=e16] [cursor=pointer]:\n          - /url: https://github.com/yaascarol?tab=repositories\n      - listitem [ref=e17]:\n        - link \"Currency Exchange App\" [ref=e18] [cursor=pointer]:\n          - /url: https://github.com/yaascarol/ProjetoCurrencyExchangeApp\n      - listitem [ref=e19]:\n        - link \"Projetos que acompanho\" [ref=e20] [cursor=pointer]:\n          - /url: https://github.com/yaascarol?tab=stars\n  - navigation \"Redes sociais\" [ref=e21]:\n    - list [ref=e22]:\n      - listitem [ref=e23]:\n        - link \"GitHub de Yasmin (abre em nova aba)\" [ref=e24] [cursor=pointer]:\n          - /url: https://github.com/yaascarol\n  - paragraph [ref=e26]:\n    - text: Feito com\n    - img \"carinho\" [ref=e27]: ♥\n    - text: por Yasmin\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_run_code_unsafe",
+      "arguments": {
+        "code": "async (page) => {\n    const checks = [];\n    const check = (ok, name) => { if (!ok) throw new Error(name); checks.push(name); };\n    const toggle = page.getByRole('switch', {name:'Modo claro'});\n    check(await page.title() === 'Yasmin | DevLinks', 'Título personalizado');\n    await page.getByRole('img',{name:'Avatar de Yasmin no GitHub'}).evaluate(img => img.decode());\n    check(await toggle.getAttribute('aria-checked') === 'false', 'Tema inicial escuro');\n    await toggle.click();\n    check(await toggle.getAttribute('aria-checked') === 'true', 'Alterna para claro');\n    await page.reload();\n    check(await toggle.getAttribute('aria-checked') === 'true', 'Claro persiste após recarregar');\n    await toggle.focus(); await page.keyboard.press('Space');\n    check(await toggle.getAttribute('aria-checked') === 'false', 'Teclado alterna para escuro');\n    await page.reload();\n    check(await toggle.getAttribute('aria-checked') === 'false', 'Escuro persiste após recarregar');\n    const links = page.getByRole('navigation',{name:'Links de Yasmin'}).getByRole('link');\n    check(await links.count() === 4, 'Quatro botões');\n    const expected = ['https://github.com/yaascarol','https://github.com/yaascarol?tab=repositories','https://github.com/yaascarol/ProjetoCurrencyExchangeApp','https://github.com/yaascarol?tab=stars'];\n    for(let i=0;i<4;i++) {\n      const a=links.nth(i);\n      check(await a.getAttribute('href') === expected[i], 'Destino botão '+(i+1));\n      check(await a.getAttribute('target') === '_blank' && (await a.getAttribute('rel')).includes('noopener'), 'Nova aba segura '+(i+1));\n      const popupPromise = page.waitForEvent('popup'); await a.click(); const popup = await popupPromise;\n      await popup.waitForURL(expected[i], {waitUntil:'domcontentloaded'});\n      check(popup.url() === expected[i], 'Abriu destino '+(i+1)); await popup.close();\n    }\n    return {passed:true, checks};\n  }"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n{\"passed\":true,\"checks\":[\"Título personalizado\",\"Tema inicial escuro\",\"Alterna para claro\",\"Claro persiste após recarregar\",\"Teclado alterna para escuro\",\"Escuro persiste após recarregar\",\"Quatro botões\",\"Destino botão 1\",\"Nova aba segura 1\",\"Abriu destino 1\",\"Destino botão 2\",\"Nova aba segura 2\",\"Abriu destino 2\",\"Destino botão 3\",\"Nova aba segura 3\",\"Abriu destino 3\",\"Destino botão 4\",\"Nova aba segura 4\",\"Abriu destino 4\"]}\n### Ran Playwright code\n```js\nawait (async (page) => {\n    const checks = [];\n    const check = (ok, name) => { if (!ok) throw new Error(name); checks.push(name); };\n    const toggle = page.getByRole('switch', {name:'Modo claro'});\n    check(await page.title() === 'Yasmin | DevLinks', 'Título personalizado');\n    await page.getByRole('img',{name:'Avatar de Yasmin no GitHub'}).evaluate(img => img.decode());\n    check(await toggle.getAttribute('aria-checked') === 'false', 'Tema inicial escuro');\n    await toggle.click();\n    check(await toggle.getAttribute('aria-checked') === 'true', 'Alterna para claro');\n    await page.reload();\n    check(await toggle.getAttribute('aria-checked') === 'true', 'Claro persiste após recarregar');\n    await toggle.focus(); await page.keyboard.press('Space');\n    check(await toggle.getAttribute('aria-checked') === 'false', 'Teclado alterna para escuro');\n    await page.reload();\n    check(await toggle.getAttribute('aria-checked') === 'false', 'Escuro persiste após recarregar');\n    const links = page.getByRole('navigation',{name:'Links de Yasmin'}).getByRole('link');\n    check(await links.count() === 4, 'Quatro botões');\n    const expected = ['https://github.com/yaascarol','https://github.com/yaascarol?tab=repositories','https://github.com/yaascarol/ProjetoCurrencyExchangeApp','https://github.com/yaascarol?tab=stars'];\n    for(let i=0;i<4;i++) {\n      const a=links.nth(i);\n      check(await a.getAttribute('href') === expected[i], 'Destino botão '+(i+1));\n      check(await a.getAttribute('target') === '_blank' && (await a.getAttribute('rel')).includes('noopener'), 'Nova aba segura '+(i+1));\n      const popupPromise = page.waitForEvent('popup'); await a.click(); const popup = await popupPromise;\n      await popup.waitForURL(expected[i], {waitUntil:'domcontentloaded'});\n      check(popup.url() === expected[i], 'Abriu destino '+(i+1)); await popup.close();\n    }\n    return {passed:true, checks};\n  })(page);\n```\n### Events\n- New console entries: docs\\yasmin\\figma-validacao\\console-2026-11-11T02-14-04-423Z.log#L2-L3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_resize",
+      "arguments": {
+        "width": 1440,
+        "height": 1024
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 1440, height: 1024 });\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_run_code_unsafe",
+      "arguments": {
+        "code": "async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== false) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'dark' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      }"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n{\"passed\":true,\"width\":1440,\"scrollWidth\":1440,\"theme\":\"dark\",\"avatar\":224}\n### Ran Playwright code\n```js\nawait (async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== false) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'dark' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      })(page);\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_take_screenshot",
+      "arguments": {
+        "filename": "C:\\Users\\User\\OneDrive\\Documentos\\ChatGPT\\currency exchange app\\devlinks-publicacao\\docs\\yasmin\\figma-validacao\\1440-dark.png",
+        "fullPage": true,
+        "scale": "css"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n- [Screenshot of full page](docs\\yasmin\\figma-validacao\\1440-dark.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\yasmin\\figma-validacao\\1440-dark.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\yasmin\\\\figma-validacao\\\\1440-dark.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_run_code_unsafe",
+      "arguments": {
+        "code": "async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== true) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'light' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      }"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n{\"passed\":true,\"width\":1440,\"scrollWidth\":1440,\"theme\":\"light\",\"avatar\":224}\n### Ran Playwright code\n```js\nawait (async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== true) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'light' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      })(page);\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_take_screenshot",
+      "arguments": {
+        "filename": "C:\\Users\\User\\OneDrive\\Documentos\\ChatGPT\\currency exchange app\\devlinks-publicacao\\docs\\yasmin\\figma-validacao\\1440-light.png",
+        "fullPage": true,
+        "scale": "css"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n- [Screenshot of full page](docs\\yasmin\\figma-validacao\\1440-light.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\yasmin\\figma-validacao\\1440-light.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\yasmin\\\\figma-validacao\\\\1440-light.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_resize",
+      "arguments": {
+        "width": 360,
+        "height": 800
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 360, height: 800 });\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_run_code_unsafe",
+      "arguments": {
+        "code": "async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== false) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'dark' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      }"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n{\"passed\":true,\"width\":360,\"scrollWidth\":360,\"theme\":\"dark\",\"avatar\":224}\n### Ran Playwright code\n```js\nawait (async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== false) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'dark' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      })(page);\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_take_screenshot",
+      "arguments": {
+        "filename": "C:\\Users\\User\\OneDrive\\Documentos\\ChatGPT\\currency exchange app\\devlinks-publicacao\\docs\\yasmin\\figma-validacao\\360-dark.png",
+        "fullPage": true,
+        "scale": "css"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n- [Screenshot of full page](docs\\yasmin\\figma-validacao\\360-dark.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\yasmin\\figma-validacao\\360-dark.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\yasmin\\\\figma-validacao\\\\360-dark.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_run_code_unsafe",
+      "arguments": {
+        "code": "async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== true) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'light' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      }"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n{\"passed\":true,\"width\":360,\"scrollWidth\":360,\"theme\":\"light\",\"avatar\":224}\n### Ran Playwright code\n```js\nawait (async (page) => {\n        const toggle=page.getByRole('switch',{name:'Modo claro'});\n        if ((await toggle.getAttribute('aria-checked') === 'true') !== true) await toggle.click();\n        await page.mouse.move(0,0); await page.evaluate(() => document.fonts.ready);\n        const result=await page.evaluate(() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,theme:document.documentElement.dataset.theme,avatar:document.querySelector('.profile__avatar').naturalWidth}));\n        if(result.scrollWidth>result.width || result.theme !== 'light' || !result.avatar) throw new Error(JSON.stringify(result));\n        return {passed:true,...result};\n      })(page);\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_take_screenshot",
+      "arguments": {
+        "filename": "C:\\Users\\User\\OneDrive\\Documentos\\ChatGPT\\currency exchange app\\devlinks-publicacao\\docs\\yasmin\\figma-validacao\\360-light.png",
+        "fullPage": true,
+        "scale": "css"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n- [Screenshot of full page](docs\\yasmin\\figma-validacao\\360-light.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\yasmin\\figma-validacao\\360-light.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\yasmin\\\\figma-validacao\\\\360-light.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_console_messages",
+      "arguments": {
+        "level": "error",
+        "all": true
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\nTotal messages: 9 (Errors: 0, Warnings: 0)\nReturning 0 messages for level \"error\"\n"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_network_requests",
+      "arguments": {
+        "static": true,
+        "all": true
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\n1. [GET] http://127.0.0.1:5175/ => [200] OK\n2. [GET] http://127.0.0.1:5175/@vite/client => [200] OK\n3. [GET] http://127.0.0.1:5175/src/main.jsx => [200] OK\n4. [GET] http://127.0.0.1:5175/@react-refresh => [200] OK\n5. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react.js?v=d9ed4b39 => [200] OK\n6. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-dom_client.js?v=d9ed4b39 => [200] OK\n7. [GET] http://127.0.0.1:5175/src/index.css => [200] OK\n8. [GET] http://127.0.0.1:5175/src/App.jsx => [200] OK\n9. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d9ed4b39 => [200] OK\n10. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-DgVJeC5g.js?v=d9ed4b39 => [200] OK\n11. [GET] http://127.0.0.1:5175/src/components/Profile.jsx => [200] OK\n12. [GET] http://127.0.0.1:5175/src/components/ThemeToggle.jsx => [200] OK\n13. [GET] http://127.0.0.1:5175/src/components/LinkButton.jsx => [200] OK\n14. [GET] http://127.0.0.1:5175/src/components/SocialLinks.jsx => [200] OK\n15. [GET] http://127.0.0.1:5175/src/components/Footer.jsx => [200] OK\n16. [GET] http://127.0.0.1:5175/src/data/links.js => [200] OK\n17. [GET] http://127.0.0.1:5175/src/data/profile.js => [200] OK\n18. [GET] http://127.0.0.1:5175/src/App.css => [200] OK\n19. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-dom-CFuoV50Q.js?v=d9ed4b39 => [200] OK\n20. [GET] http://127.0.0.1:5175/node_modules/vite/dist/client/env.mjs => [200] OK\n21. [GET] http://127.0.0.1:5175/src/components/Footer.css => [200] OK\n22. [GET] http://127.0.0.1:5175/src/components/Profile.css => [200] OK\n23. [GET] http://127.0.0.1:5175/src/assets/sun.svg?import => [200] OK\n24. [GET] http://127.0.0.1:5175/src/assets/moon.svg?import => [200] OK\n25. [GET] http://127.0.0.1:5175/src/components/ThemeToggle.css => [200] OK\n26. [GET] http://127.0.0.1:5175/src/assets/github-dark.svg?import => [200] OK\n27. [GET] http://127.0.0.1:5175/src/assets/github-light.svg?import => [200] OK\n28. [GET] http://127.0.0.1:5175/src/components/SocialLinks.css => [200] OK\n29. [GET] http://127.0.0.1:5175/src/components/LinkButton.css => [200] OK\n30. [GET] http://127.0.0.1:5175/src/assets/background-dark.png => [200] OK\n31. [GET] https://github.com/yaascarol.png?size=224 => [302] \n32. [GET] http://127.0.0.1:5175/src/assets/inter-variable.ttf => [200] OK\n33. [GET] https://avatars.githubusercontent.com/u/176051328?s=224&v=4 => [200] \n34. [GET] http://127.0.0.1:5175/favicon.svg => [200] OK\n35. [GET] http://127.0.0.1:5175/src/assets/background-light.png => [200] OK\n36. [GET] http://127.0.0.1:5175/ => [200] OK\n37. [GET] http://127.0.0.1:5175/@vite/client => [304] Not Modified\n38. [GET] http://127.0.0.1:5175/src/main.jsx => [304] Not Modified\n39. [GET] http://127.0.0.1:5175/@react-refresh => [304] Not Modified\n40. [GET] http://127.0.0.1:5175/node_modules/vite/dist/client/env.mjs => [304] Not Modified\n41. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react.js?v=d9ed4b39 => [200] OK\n42. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-dom_client.js?v=d9ed4b39 => [200] OK\n43. [GET] http://127.0.0.1:5175/src/index.css => [304] Not Modified\n44. [GET] http://127.0.0.1:5175/src/App.jsx => [304] Not Modified\n45. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d9ed4b39 => [200] OK\n46. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-DgVJeC5g.js?v=d9ed4b39 => [200] OK\n47. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-dom-CFuoV50Q.js?v=d9ed4b39 => [200] OK\n48. [GET] http://127.0.0.1:5175/src/components/Profile.jsx => [304] Not Modified\n49. [GET] http://127.0.0.1:5175/src/components/ThemeToggle.jsx => [304] Not Modified\n50. [GET] http://127.0.0.1:5175/src/components/LinkButton.jsx => [304] Not Modified\n51. [GET] http://127.0.0.1:5175/src/components/SocialLinks.jsx => [304] Not Modified\n52. [GET] http://127.0.0.1:5175/src/components/Footer.jsx => [304] Not Modified\n53. [GET] http://127.0.0.1:5175/src/data/links.js => [304] Not Modified\n54. [GET] http://127.0.0.1:5175/src/data/profile.js => [304] Not Modified\n55. [GET] http://127.0.0.1:5175/src/App.css => [304] Not Modified\n56. [GET] http://127.0.0.1:5175/src/components/Profile.css => [304] Not Modified\n57. [GET] http://127.0.0.1:5175/src/assets/sun.svg?import => [304] Not Modified\n58. [GET] http://127.0.0.1:5175/src/assets/moon.svg?import => [304] Not Modified\n59. [GET] http://127.0.0.1:5175/src/components/ThemeToggle.css => [304] Not Modified\n60. [GET] http://127.0.0.1:5175/src/components/LinkButton.css => [304] Not Modified\n61. [GET] http://127.0.0.1:5175/src/assets/github-dark.svg?import => [304] Not Modified\n62. [GET] http://127.0.0.1:5175/src/assets/github-light.svg?import => [304] Not Modified\n63. [GET] http://127.0.0.1:5175/src/components/SocialLinks.css => [304] Not Modified\n64. [GET] http://127.0.0.1:5175/src/components/Footer.css => [304] Not Modified\n65. [GET] http://127.0.0.1:5175/src/assets/background-dark.png => [304] Not Modified\n66. [GET] https://github.com/yaascarol.png?size=224 => [302] \n67. [GET] http://127.0.0.1:5175/src/assets/inter-variable.ttf => [304] Not Modified\n68. [GET] https://avatars.githubusercontent.com/u/176051328?s=224&v=4 => [200] \n69. [GET] http://127.0.0.1:5175/favicon.svg => [200] OK\n70. [GET] http://127.0.0.1:5175/src/assets/background-light.png => [200] OK\n71. [GET] http://127.0.0.1:5175/ => [200] OK\n72. [GET] http://127.0.0.1:5175/@vite/client => [304] Not Modified\n73. [GET] http://127.0.0.1:5175/src/main.jsx => [304] Not Modified\n74. [GET] http://127.0.0.1:5175/@react-refresh => [304] Not Modified\n75. [GET] http://127.0.0.1:5175/node_modules/vite/dist/client/env.mjs => [304] Not Modified\n76. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react.js?v=d9ed4b39 => [200] OK\n77. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-dom_client.js?v=d9ed4b39 => [200] OK\n78. [GET] http://127.0.0.1:5175/src/index.css => [304] Not Modified\n79. [GET] http://127.0.0.1:5175/src/App.jsx => [304] Not Modified\n80. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d9ed4b39 => [200] OK\n81. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-DgVJeC5g.js?v=d9ed4b39 => [200] OK\n82. [GET] http://127.0.0.1:5175/node_modules/.vite/deps/react-dom-CFuoV50Q.js?v=d9ed4b39 => [200] OK\n83. [GET] http://127.0.0.1:5175/src/components/Profile.jsx => [304] Not Modified\n84. [GET] http://127.0.0.1:5175/src/components/ThemeToggle.jsx => [304] Not Modified\n85. [GET] http://127.0.0.1:5175/src/components/LinkButton.jsx => [304] Not Modified\n86. [GET] http://127.0.0.1:5175/src/components/SocialLinks.jsx => [304] Not Modified\n87. [GET] http://127.0.0.1:5175/src/components/Footer.jsx => [304] Not Modified\n88. [GET] http://127.0.0.1:5175/src/data/links.js => [304] Not Modified\n89. [GET] http://127.0.0.1:5175/src/data/profile.js => [304] Not Modified\n90. [GET] http://127.0.0.1:5175/src/App.css => [304] Not Modified\n91. [GET] http://127.0.0.1:5175/src/components/Profile.css => [304] Not Modified\n92. [GET] http://127.0.0.1:5175/src/assets/sun.svg?import => [304] Not Modified\n93. [GET] http://127.0.0.1:5175/src/assets/moon.svg?import => [304] Not Modified\n94. [GET] http://127.0.0.1:5175/src/components/ThemeToggle.css => [304] Not Modified\n95. [GET] http://127.0.0.1:5175/src/components/LinkButton.css => [304] Not Modified\n96. [GET] http://127.0.0.1:5175/src/assets/github-dark.svg?import => [304] Not Modified\n97. [GET] http://127.0.0.1:5175/src/assets/github-light.svg?import => [304] Not Modified\n98. [GET] http://127.0.0.1:5175/src/components/SocialLinks.css => [304] Not Modified\n99. [GET] http://127.0.0.1:5175/src/components/Footer.css => [304] Not Modified\n100. [GET] http://127.0.0.1:5175/src/assets/background-dark.png => [304] Not Modified\n101. [GET] https://github.com/yaascarol.png?size=224 => [302] \n102. [GET] http://127.0.0.1:5175/src/assets/inter-variable.ttf => [304] Not Modified\n103. [GET] https://avatars.githubusercontent.com/u/176051328?s=224&v=4 => [200] \n104. [GET] http://127.0.0.1:5175/favicon.svg => [200] OK\n105. [GET] http://127.0.0.1:5175/src/assets/background-light.png => [304] Not Modified\n106. [GET] http://127.0.0.1:5175/src/assets/background-mobile-light.png => [200] OK\n107. [GET] http://127.0.0.1:5175/src/assets/background-mobile-dark.png => [200] OK"
+          }
+        ]
+      }
+    },
+    {
+      "name": "browser_close",
+      "arguments": {},
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "### Result\nNo open tabs. Navigate to a URL to create one.\n### Ran Playwright code\n```js\nawait page.close()\n```"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -14,6 +14,8 @@
   --text-color: #fff;
   --stroke-color: rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --highlight-color: rgba(255, 255, 255, 0.2);
   --shadow-color: rgba(0, 0, 0, 0.25);
   --page-color: #121214;
   --background-image: url('./assets/background-dark.png');
@@ -28,6 +30,8 @@
   --text-color: #000;
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
   --shadow-color: rgba(0, 0, 0, 0.1);
   --page-color: #fff;
   --background-image: url('./assets/background-light.png');

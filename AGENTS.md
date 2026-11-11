@@ -55,3 +55,8 @@ Use um único agente e este arquivo de instruções na raiz; não crie subagente
 - Registrar novas evidências em docs/yasmin. As evidências do ZIP original não integram esta entrega.
 
 
+
+## Referência acessível para revisão
+- Cópia de Yasmin: https://www.figma.com/design/w644xnZiGhg3P89vFXW2hy/DevLinks?node-id=0-1
+- Comparação concluída e documentada em docs/yasmin/figma.md. Preservar as personalizações de conteúdo autorizadas.
+

@@ -30,12 +30,12 @@ Lint e build aprovados. Verificação no navegador: avatar carregado, quatro des
 
 As evidências antigas do ZIP original foram excluídas desta entrega. Consulte [o registro atual](docs/yasmin/validacao.md).
 
-## Entrega e pendências
+## Entrega e evidências
 
 - Repositório desta entrega: https://github.com/yaascarol/devlinks
 - Context7 MCP: consulta real concluída sobre useState e Props; veja [evidência e fontes](docs/yasmin/context7.md). Foi uma revisão posterior à implementação.
 - Playwright MCP: testes reais concluídos, incluindo links, teclado, persistência e seis cenários responsivos. Veja [relatório e capturas](docs/yasmin/playwright.md).
-- Pendente: comparação direta com o Figma. A integração oficial foi conectada, mas recusou a leitura porque a conta não tem acesso de edição ao arquivo. Veja [registro e como liberar o acesso](docs/yasmin/figma.md). Os estilos e assets do ZIP foram preservados.
+- Figma: comparação concluída com a cópia de Yasmin, incluindo quatro telas, guia de estilo, geometria e ajustes de hover. Veja [relatório](docs/yasmin/figma.md).
 
 ## Referência e créditos
 
@@ -43,9 +43,10 @@ As evidências antigas do ZIP original foram excluídas desta entrega. Consulte 
 
 ## Capturas
 
-![Desktop](docs/yasmin/playwright-mcp/1440-dark.png)
+![Desktop](docs/yasmin/figma-validacao/1440-dark.png)
 
-![Mobile](docs/yasmin/playwright-mcp/390-light.png)
+![Mobile](docs/yasmin/figma-validacao/360-light.png)
+
 
 
 
